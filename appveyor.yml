@@ -4,6 +4,8 @@ branches:
     only:
         - master
 
+skip_tags: true
+
 assembly_info:
     patch: true
     file: AssemblyInfo.*
@@ -24,3 +26,11 @@ before_build:
 artifacts:
     - path: output
       name: LocalCacher-$(APPVEYOR_BUILD_VERSION)
+
+deploy:
+  provider: GitHub
+  auth_token:
+    secure: LsaQ0/uL04E4BxlUM1oLH7hMjoc0DtNeHjOpSz4o4+Fhdn7I39HkT5LUwSC6kGuu
+  artifact: /.*/
+  on:
+    branch: master
